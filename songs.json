@@ -1,0 +1,34 @@
+{
+    "songs": [
+        {
+            "name": "Song of the South",
+            "artist": "Alabama",
+            "album": "Southern Star",
+            "year": 1989
+        },
+        {
+            "name": "I'm Gonna Miss Her",
+            "artist": "Brad Paisley",
+            "album": "Part II",
+            "year": 2001
+        },
+        {
+            "name": "409",
+            "artist": "The Beach Boys",
+            "album": "Surfin' Safari",
+            "year": 1962
+        },
+        {
+            "name": "Last Chance",
+            "artist": "Shooting Star",
+            "album": "Last Chance",
+            "year": 1979
+        },
+        {
+            "name": "Ghost Riders",
+            "artist": "The Outlaws",
+            "album": "Ghost Riders",
+            "year": 1980
+        }
+    ]
+}
