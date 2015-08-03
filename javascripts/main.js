@@ -1,6 +1,7 @@
 requirejs(["dom-access", "populate-songs", "get-more-songs"],
  function(output, generate, getMore) {
   var num = 1;
+  console.log(output);
   generate.setArray(addSongs);
 
   $('#more').click(function(){
