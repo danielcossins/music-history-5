@@ -2,36 +2,19 @@ requirejs(["dom-access", "populate-songs", "get-more-songs"],
  function(output, generate, getMore) {
   var num = 1;
 
-  generate.setArray();
-  addSongs(generate.getSongs());
+  // generate.setArray();
+  // addSongs(generate.getSongs());
+  console.log(generate.setArray(addSongs));
 
   $('#more').click(function(){
     if(num===1){
-    getMore.setArray();
-    addSongs(getMore.getSongs());
+    // getMore.setArray();
+    // addSongs(getMore.getSongs());
+    console.log(getMore.setArray(addSongs));
     num=2;
     }
   });
 });
-
-
-// $(document).ready(function(){
-//   $.ajax({
-//     url: "songs.json"
-//   }).done(function(data){
-//     addSongs(data);
-//   });
-//   var index=2;
-//   $("#more").click(function(){
-//     $.ajax({
-//       url: "songs"+index+".json"
-//     }).done(function(data2){
-//       addSongs(data2);
-//       index++;
-//     });
-//   });
-// });
-
 
 function addSongs(data){
   for(var i=1; i<=data.songs.length; i++){
@@ -47,3 +30,9 @@ function initDelete(){
     $(this).parent().remove();
   });
 }
+
+// $.ajax({
+//         url: "./javascripts/more-songs.json"
+//       }).done(function(data) {
+//         callback.call(this, data.songs);
+//       });

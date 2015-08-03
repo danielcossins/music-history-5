@@ -1,19 +1,20 @@
 define(function(){
   var songs = [];
   return {
-    setArray: function(){
+    setArray: function(callback){
       $.ajax({
         url: "songs.json",
-        async: false
+        // async: false
       }).done(function(data){
-        songs = data;
-        return songs;
+        callback.call(this, data);
+        // songs = data;
+        // return songs;
       });
-    },
-
-    getSongs: function(){
-      return songs;
     }
+
+    // getSongs: function(){
+    //   return songs;
+    // }
   };
 });
 
