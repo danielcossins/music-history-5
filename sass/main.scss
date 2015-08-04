@@ -1,7 +1,94 @@
 $font-stack:    Helvetica, sans-serif;
-$primary-color: #e7e7e7;
+$color1: #e7e7e7;
+$odd: #F5FFFA;
+$even: #FFF5EE;
 
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
+/*# sourceMappingURL=main.css.map */
+
+#left
+{
+  /*border: 2px solid black;*/
+  background-color: #4DD7FA ;
+  width: 200px;
+  margin: 5px;
+  padding: 10px;
+  min-width: 187px;
+  font-family: Arial;
+
+  select
+  {
+    width: 90%;
+    /*outline: 2px solid black;*/
+  }
+
+  #addSongs{
+    display: none;
+    background-color: $color1;
+  }
+
+  #adding{
+    width: 100%;
+    background-color: $color1;
+  }
+}
+
+#right
+{
+  background-color: $color1;
+  width: 615px;
+  min-width: 150px;
+  margin: 5px;
+  padding: 0px;
+  width: 100%;
+
+  .large
+  {
+    margin-left: 40px;
+    font-size: 1.5em;
+    font-family: Arial;
+    color: #785616;
+  }
+
+  div li
+  {
+    display: inline;
+    padding: 3px;
+  }
+
+  div li.middle
+  {
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  div:nth-child(2n+0)
+  {
+    background-color: $odd;
+    /*background-color:#7AC5CD;*/
+  }
+  div:nth-child(2n+1)
+  {
+    background-color: $even;
+    /*background-color: #EE3B3B;*/
+  }
+  .container:first-child
+  {
+    font-weight: bold;
+  }
+  div#more{
+    background-color: $color1 !important;
+    padding: 5px;
+  }
+}
+
+#bottom
+{
+  margin-top: 55px;
+  display: flex;
+}
+
+nav{
+  margin-bottom: 55px;
 }
