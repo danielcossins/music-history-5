@@ -13,10 +13,6 @@ $pinkish: #FFB4B0;
   border-color: black;
 }
 
-
-
-
-
 #left
 {
   /*border: 2px solid black;*/
@@ -103,3 +99,5 @@ $pinkish: #FFB4B0;
   margin-top: 55px;
   display: flex;
 }
+
+@import 'slide';
