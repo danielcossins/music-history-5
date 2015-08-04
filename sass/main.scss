@@ -2,8 +2,21 @@ $font-stack:    Helvetica, sans-serif;
 $color1: #e7e7e7;
 $odd: #F5FFFA;
 $even: #FFF5EE;
+$default-navbar-background-color: #f8f8f8;
+$default-navbar-border-color: #e7e7e7;
+$pinkish: #FFB4B0;
+@grid-float-breakpoint: 850;
 
 /*# sourceMappingURL=main.css.map */
+
+.navbar-default {
+  background-color: $pinkish;
+  border-color: black;
+}
+
+
+
+
 
 #left
 {
@@ -49,18 +62,21 @@ $even: #FFF5EE;
     color: #785616;
   }
 
-  div li
-  {
-    display: inline;
-    padding: 3px;
-  }
+  // div li
+  // {
+  //   display: inline;
+  //   padding: 3px;
+  // }
 
-  div li.middle
-  {
-    border-right: 2px solid black;
-    border-left: 2px solid black;
-    padding-left: 10px;
-    padding-right: 10px;
+  // div li.middle
+  // {
+  //   border-right: 2px solid black;
+  //   border-left: 2px solid black;
+  //   padding-left: 10px;
+  //   padding-right: 10px;
+  // }
+  div li{
+    list-style: none;
   }
 
   div:nth-child(2n+0)
@@ -87,8 +103,4 @@ $even: #FFF5EE;
 {
   margin-top: 55px;
   display: flex;
-}
-
-nav{
-  margin-bottom: 55px;
 }
