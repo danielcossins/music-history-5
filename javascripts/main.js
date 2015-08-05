@@ -14,7 +14,7 @@ requirejs(["dom-access", "populate-songs", "get-more-songs"],
 
 function addSongs(data){
   for(var i=1; i<=data.songs.length; i++){
-    $('#more').before("<div class='container'><h5 class='large' id='song'>"+data.songs[i-1].name+"</h5><ul><li id='artist'> Artist: "+data.songs[i-1].artist+"</li><li class='middle' id='album'>Album: "+data.songs[i-1].album+"</li><li id='year'>Year: "+data.songs[i-1].year+"</li></ul><button type='button' class='btn btn-default btn-sm delete'>Delete</button></div>");
+    $('#more').before("<div class='cont'><p class='large' id='song'>"+data.songs[i-1].name+"</p><ul><li id='artist'> Artist: "+data.songs[i-1].artist+"</li><li class='middle' id='album'>Album: "+data.songs[i-1].album+"</li><li id='year'>Year: "+data.songs[i-1].year+"</li></ul><button type='button' class='btn btn-default btn-sm delete'>Delete</button></div>");
   }
       $('.matchHeight').matchHeight();
   initDelete();

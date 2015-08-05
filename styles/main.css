@@ -6,8 +6,6 @@
 #left {
   /*border: 2px solid black;*/
   background-color: #4DD7FA;
-  margin: 5px;
-  padding: 10px;
   font-family: Arial; }
   #left select {
     width: 90%;
@@ -21,8 +19,6 @@
 
 #right {
   background-color: #e7e7e7;
-  width: 615px;
-  margin: 5px;
   padding: 0px; }
   #right .large {
     margin-left: 40px;
@@ -37,9 +33,9 @@
   #right div:nth-child(2n+1) {
     background-color: #FFF5EE;
     /*background-color: #EE3B3B;*/ }
-  #right .container:first-child {
+  #right .cont:first-child {
     font-weight: bold; }
-  #right .container#more {
+  #right .cont#more {
     background-color: #e7e7e7 !important;
     padding: 5px; }
 
