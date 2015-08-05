@@ -17,11 +17,12 @@ $pinkish: #FFB4B0;
 {
   /*border: 2px solid black;*/
   background-color: #4DD7FA ;
-  width: 200px;
+  // width: 200px;
   margin: 5px;
   padding: 10px;
-  min-width: 187px;
+  // min-width: 187px;
   font-family: Arial;
+  // width: 100%;
 
   select
   {
@@ -44,10 +45,11 @@ $pinkish: #FFB4B0;
 {
   background-color: $color1;
   width: 615px;
-  min-width: 150px;
+  // width: 100%;
+  // min-width: 150px;
   margin: 5px;
   padding: 0px;
-  width: 100%;
+  // width: 100%;
 
   .large
   {
@@ -87,8 +89,10 @@ $pinkish: #FFB4B0;
   .container:first-child
   {
     font-weight: bold;
+    // background-color: blue;
+    // width: 100%;
   }
-  div#more{
+  .container#more{
     background-color: $color1 !important;
     padding: 5px;
   }
@@ -97,7 +101,7 @@ $pinkish: #FFB4B0;
 #bottom
 {
   margin-top: 55px;
-  display: flex;
+  // display: flex;
 }
 
 @import 'slide';
