@@ -1,4 +1,4 @@
-define(function(){
+define(["jquery"], function(){
   var songs = [];
   return {
     setArray: function(callback){

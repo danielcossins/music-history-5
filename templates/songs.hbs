@@ -1,0 +1,11 @@
+{{#each songs}}
+<div class='cont'>
+  <p class='large' id='song'>{{name}}</p>
+  <ul>
+    <li id='artist'>Artist: {{artist}}</li>
+    <li class='middle' id='album'>Album: {{album}}</li>
+    <li id='year'>Year: {{year}}</li>
+  </ul>
+  <button type='button' class='btn btn-default btn-sm delete'>Delete</button>
+</div>
+{{/each}}
