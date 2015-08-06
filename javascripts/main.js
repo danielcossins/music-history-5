@@ -22,11 +22,8 @@ requirejs(["jquery", "hbs", "bootstrap", "matchHeight", "dom-access", "populate-
     console.log(output);
     generate.setArray(addSongs);
 
-    $addSongs.on("click", function(){
-      // var title = $('#title').val();
-      // var artist = $('#artist').val();
-      // var album = $('#album').val();
-      // var year = $('#year').val();
+    $addSongs.click(function(){
+      console.log("We made it to the button click");
       var song = {
       "name": $('#title').val(),
       "artist": $('#artist').val(),
@@ -83,3 +80,7 @@ function loadSongsToFirebase(data){
     console.log("you loaded something");
   });
 }
+
+// function filterSongs(){
+//   filter
+// }

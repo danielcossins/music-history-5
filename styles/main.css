@@ -9,8 +9,8 @@
   #left select {
     width: 90%;
     /*outline: 2px solid black;*/ }
-  #left #addSongs {
-    background-color: #e7e7e7; }
+  #left #addSongsDiv {
+    background-color: #4DD7FA; }
   #left #adding {
     width: 100%;
     background-color: #e7e7e7; }

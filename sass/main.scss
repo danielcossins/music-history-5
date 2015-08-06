@@ -1,5 +1,6 @@
 $font-stack:    Helvetica, sans-serif;
 $color1: #e7e7e7;
+$left: #4DD7FA;
 $odd: #F5FFFA;
 $even: #FFF5EE;
 $default-navbar-background-color: #f8f8f8;
@@ -16,7 +17,7 @@ $pinkish: #FFB4B0;
 #left
 {
   // border: 2px solid black;
-  background-color: #4DD7FA ;
+  background-color: $left ;
   // width: 200px;
   // margin: 5px;
   // padding: 10px;
@@ -30,9 +31,9 @@ $pinkish: #FFB4B0;
     /*outline: 2px solid black;*/
   }
 
-  #addSongs{
+  #addSongsDiv{
     // display: none;
-    background-color: $color1;
+    background-color: $left;
   }
 
   #adding{
