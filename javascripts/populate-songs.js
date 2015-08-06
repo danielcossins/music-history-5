@@ -6,7 +6,7 @@ define(["jquery"], function(){
   return {
     setArray: function(callback){
       $.ajax({
-        url: "songs.json",
+        url: "https://flickering-fire-4801.firebaseio.com/.json",
         // async: false
       }).done(function(data){
         callback.call(this, data);

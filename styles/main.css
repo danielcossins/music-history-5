@@ -10,7 +10,6 @@
     width: 90%;
     /*outline: 2px solid black;*/ }
   #left #addSongs {
-    display: none;
     background-color: #e7e7e7; }
   #left #adding {
     width: 100%;

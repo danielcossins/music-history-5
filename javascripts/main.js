@@ -1,3 +1,5 @@
+var formOnce=false;
+
 requirejs.config({
   baseUrl: './javascripts',
   paths: {
@@ -14,27 +16,47 @@ requirejs.config({
 
 requirejs(["jquery", "hbs", "bootstrap", "matchHeight", "dom-access", "populate-songs", "get-more-songs"],
   function($, Handlebars, bootstrap, matchHeight, output, generate, getMore) {
+  var $addSongs = $('#addSongs');
     
     var num = 1;
     console.log(output);
     generate.setArray(addSongs);
 
-  $('#more').click(function(){
-    if(num===1){
-    getMore.setArray(addSongs);
-    num=2;
-    }
-  });
+    $addSongs.on("click", function(){
+      // var title = $('#title').val();
+      // var artist = $('#artist').val();
+      // var album = $('#album').val();
+      // var year = $('#year').val();
+      var song = {
+      "name": $('#title').val(),
+      "artist": $('#artist').val(),
+      "album": $('#album').val(),
+      "year": $('#year').val()
+      };
+      console.log(song);
+      loadSongsToFirebase(song);
+    });
+
+  // $('#more').click(function(){
+  //   if(num===1){
+  //   getMore.setArray(addSongs);
+  //   num=2;
+  //   }
+  // });
 });
 
 function addSongs(data){
-  require(['hbs!../templates/songs'], function(songTemplate){
+  require(['hbs!../templates/songs', 'hbs!../templates/form'], function(songTemplate, formTemplate){
     $('#more').before(songTemplate(data));
+////This code will only run once//////////////////
+    // if(formOnce===false){
+    //   $('#left').html(formTemplate(data));
+    //   formOnce=true;
+    // }
+/////////////////////////////
+    $('#selects').html(formTemplate(data));
     $('.matchHeight').matchHeight();
   });
-  // for(var i=1; i<=data.songs.length; i++){
-  //   // $('#more').before("<div class='cont'><p class='large' id='song'>"+data.songs[i-1].name+"</p><ul><li id='artist'> Artist: "+data.songs[i-1].artist+"</li><li class='middle' id='album'>Album: "+data.songs[i-1].album+"</li><li id='year'>Year: "+data.songs[i-1].year+"</li></ul><button type='button' class='btn btn-default btn-sm delete'>Delete</button></div>");
-  // }
   initDelete();
 }
 
@@ -50,3 +72,14 @@ function initDelete(){
   // });
 }
 
+function loadSongsToFirebase(data){
+  console.log("made it into the function");
+  $.ajax({
+    url: "https://flickering-fire-4801.firebaseio.com/songs.json",
+    method: "POST",
+    data: JSON.stringify(data)
+    // async: false
+  }).done(function(data){
+    console.log("you loaded something");
+  });
+}

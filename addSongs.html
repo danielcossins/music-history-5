@@ -30,7 +30,7 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+              <li class="active"><a href="index.html">Home <span class="sr-only">(current)</span></a></li>
               <li><a href="addSongs.html">Add Songs</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown<span class="caret"></span></a>
@@ -73,78 +73,13 @@
 
     <div id="bottom" class="row">
       <div id="left" class="col-md-4 matchHeight">
-        <form>
-          <div id="selects">
-            <!-- Song Length:
-            <input id="range" type="range">
-            <br>
-            Artist:
-            <br>
-            <select id="artist" placeholder="options">
-              <option>Options</option>
-            </select>
-            <br>
-            <br>
-            Album:
-            <br>
-            <select id="album" placeholder="options">
-              <option>Options</option>
-            </select>
-            <br>
-            <br>
-            Genre:
-            <br> -->
-          </div>
 
-          <div>
-            <table class="table">
-              <tr>
-                <td>
-                  <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox1" value="option1"> Rock
-                </label>
-                </td>
-                <td>
-                  <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox2" value="option2"> Classical
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox3" value="option3"> Pop
-                  </label>
-                </td>
-                <td>
-                  <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox1" value="option4"> Jazz
-                  </label>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox2" value="option5"> Blues
-                  </label>
-                </td>
-                <td>
-                  <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox3" value="option6"> Hip hop
-                  </label>
-                </td>
-              </tr>
-            </table>
-          </div>
-          <button type="submit" id="filter" class="btn btn-default center-block">Filter</button>
-        </form>
-
-        <!-- <div id="adding">
-          <button type="button" id="add" class="btn btn-default center-block">Add Songs</button>
-          <div class="form-group" id='addSongs'>
+        <div id="adding">
+          <!-- <button type="button" id="add" class="btn btn-default center-block">Add Songs</button> -->
+          <div class="form-group" id='addSongsDiv'>
             <h3>Add Songs</h3>
-            <input type="file" id="exampleInputFile">
-            <p class="help-block">Upload the audio for your songs</p>
+            <!-- <input type="file" id="exampleInputFile">
+            <p class="help-block">Upload the audio for your songs</p> -->
             <input type="text" id='title' placeholder="Title">
             <input type="text" id='artist' placeholder="Artist">
             <input type="text" id='album' placeholder="Album">
@@ -152,7 +87,7 @@
             <br>
             <button type="submit" id="addSongs" class="btn btn-default">Add</button>
           </div>
-        </div> -->
+        </div>
       </div>
 
       <div id="right"  class="col-md-8 matchHeight container-fluid"> <!--class="fluid-container"-->
