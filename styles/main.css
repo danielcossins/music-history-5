@@ -25,17 +25,16 @@
     color: #785616; }
   #right div li {
     list-style: none; }
-  #right div:nth-child(2n+0) {
-    background-color: #F5FFFA;
-    /*background-color:#7AC5CD;*/ }
-  #right div:nth-child(2n+1) {
+  #right div.cont {
     background-color: #FFF5EE;
-    /*background-color: #EE3B3B;*/ }
+    border-top: 2px solid black; }
   #right .cont:first-child {
     font-weight: bold; }
   #right .cont#more {
-    background-color: #e7e7e7 !important;
+    background-color: #e7e7e7;
     padding: 5px; }
+  #right .delete {
+    margin-left: 3%; }
 
 #bottom {
   margin-top: 55px; }
