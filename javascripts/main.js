@@ -1,4 +1,5 @@
 var formOnce=false;
+var songCount=0;
 
 requirejs.config({
   baseUrl: './javascripts',
@@ -16,13 +17,14 @@ requirejs.config({
 
 requirejs(["jquery", "hbs", "bootstrap", "matchHeight", "dom-access", "populate-songs", "get-more-songs"],
   function($, Handlebars, bootstrap, matchHeight, output, generate, getMore) {
-  var $addSongs = $('#addSongs');
+    var $addSongs = $('#addSongs');
+    var $filterSongs = $('#filter');
     
     var num = 1;
     console.log(output);
     generate.setArray(addSongs);
 
-    $addSongs.click(function(){
+    $addSongs.on("click", function(){
       console.log("We made it to the button click");
       var song = {
       "name": $('#title').val(),
@@ -32,6 +34,11 @@ requirejs(["jquery", "hbs", "bootstrap", "matchHeight", "dom-access", "populate-
       };
       console.log(song);
       loadSongsToFirebase(song);
+    });
+
+    $filterSongs.on("click", function(){
+      // console.log("We made it to the button click");
+      filterSongs();
     });
 
   // $('#more').click(function(){
@@ -53,6 +60,7 @@ function addSongs(data){
 /////////////////////////////
     $('#selects').html(formTemplate(data));
     $('.matchHeight').matchHeight();
+    songCount++;
   });
   initDelete();
 }
@@ -81,6 +89,33 @@ function loadSongsToFirebase(data){
   });
 }
 
-// function filterSongs(){
-//   filter
-// }
+function filterSongs(){
+  var $artist = $('#artist').val();
+  var $album = $('#album').val();
+  // var domArr = $('.cont');
+  var $artistArr = $(".artist");
+  var $albumArr = $(".album");
+  for(var i=0; i<$artistArr.length; i++){
+    $($artistArr[i]).parent().parent().hide();
+
+    console.log($($artistArr[i]).text());
+    if($($artistArr[i]).text()==="Artist: "+$artist){
+      $($artistArr[i]).parent().parent().show();
+      console.log("true artist");
+    }
+    // else{
+    //   $($artistArr[i]).parent().parent().hide();
+    //   console.log("false artist");
+    // }
+
+    console.log($($albumArr[i]).text());
+    if($($albumArr[i]).text()==="Album: "+$album){
+      $($albumArr[i]).parent().parent().show();
+      console.log("true album");
+    }
+    // else{
+    //   $($artistArr[i]).parent().parent().hide();
+    //   console.log("false album");
+    // }
+  }
+}
