@@ -17,14 +17,14 @@ requirejs.config({
 
 requirejs(["jquery", "hbs", "bootstrap", "matchHeight", "dom-access", "populate-songs", "get-more-songs"],
   function($, Handlebars, bootstrap, matchHeight, output, generate, getMore) {
-    var $addSongs = $('#addSongs');
+    var $addSongsButton = $('#addSongs');
     var $filterSongs = $('#filter');
     
     var num = 1;
     console.log(output);
     generate.setArray(addSongs);
 
-    $addSongs.on("click", function(){
+    $addSongsButton.on("click", function(){
       console.log("We made it to the button click");
       var song = {
       "name": $('#title').val(),
@@ -41,6 +41,13 @@ requirejs(["jquery", "hbs", "bootstrap", "matchHeight", "dom-access", "populate-
       filterSongs();
     });
 
+    // $(document).on('click', '#artist', function(){
+    //   filterAlbum();
+    // });
+
+    // modifySelect();
+
+
   // $('#more').click(function(){
   //   if(num===1){
   //   getMore.setArray(addSongs);
@@ -51,17 +58,22 @@ requirejs(["jquery", "hbs", "bootstrap", "matchHeight", "dom-access", "populate-
 
 function addSongs(data){
   require(['hbs!../templates/songs', 'hbs!../templates/form'], function(songTemplate, formTemplate){
-    $('#more').before(songTemplate(data));
+    $('#more').before(songTemplate(data));//populates songs
 ////This code will only run once//////////////////
     // if(formOnce===false){
     //   $('#left').html(formTemplate(data));
     //   formOnce=true;
     // }
 /////////////////////////////
-    $('#selects').html(formTemplate(data));
+    $('#selects').html(formTemplate(data));//populates select tags
+    $(document).on('change', '#artist', function(){
+      filterAlbum();
+    });
+    // filterAlbum();
+
     $('.matchHeight').matchHeight();
-    songCount++;
   });
+  // modifySelect();
   initDelete();
 }
 
@@ -119,3 +131,32 @@ function filterSongs(){
     // }
   }
 }
+
+function filterAlbum(){
+  var selectedArtist = $('#artist').val();
+  $('select#album > option').each(function(index, value){
+    var currentArtistName = $(value).attr("class");
+    var option = $(value);
+    if(selectedArtist === currentArtistName){
+      option.show();
+    }
+    else{
+      option.hide();
+    }
+  });
+}
+// function modifySelect(){
+//   var $artistSelect = $('select#artist');
+//   console.log($artistSelect);
+//   var $artistOptionsArr = $('.artistOption');
+//   var uniqueArtists = [];
+//   $.each($artistOptionsArr, function(i, el){
+//     if($.inArray(el, uniqueArtists) === -1) uniqueArtists.push(el);
+//   });
+//   console.log(uniqueArtists);
+//   $($artistSelect).html = "";
+//   for(var i=0; i<uniqueArtists.length; i++){
+//     $artistSelect.append(uniqueArtists[i]);
+//     // "<option class='artistOption'>"+uniqueArtists[i]+"</option>";
+//   }
+// }

@@ -30,8 +30,9 @@
     border-top: 2px solid black; }
   #right .cont:first-child {
     font-weight: bold; }
-  #right .cont#more {
+  #right #more {
     background-color: #e7e7e7;
+    margin-left: 3%;
     padding: 5px; }
   #right .delete {
     margin-left: 3%; }

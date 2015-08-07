@@ -100,8 +100,13 @@ $pinkish: #FFB4B0;
     // background-color: blue;
     // width: 100%;
   }
-  .cont#more{
+  // .cont#more{
+  //   background-color: $color1;
+  //   padding: 5px;
+  // }
+  #more{
     background-color: $color1;
+    margin-left: 3%;
     padding: 5px;
   }
   .delete{
