@@ -102,15 +102,18 @@ requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight", "l
 });
 
 function addSongs(data){
-  require(['hbs!../templates/songs', 'hbs!../templates/form'], function(songTemplate, formTemplate){
+  require(['hbs!../templates/songs', 'hbs!../templates/artistSelect', 'hbs!../templates/albumSelect'], function(songTemplate, artistFormTemplate, albumFormTemplate){
     $('#more').before(songTemplate({songs: data}));//populates songs
-////This code will only run once//////////////////
-    // if(formOnce===false){
-    //   $('#left').html(formTemplate(data));
-    //   formOnce=true;
-    // }
-/////////////////////////////
-    $('#selects').html(formTemplate({songs: data}));//populates select tags
+    ///////////////
+    var uniqueArtists = _.chain(data).uniq("artist").value();//.pluck("artist")
+    console.log(uniqueArtists);
+    var uniqueAlbums = _.chain(data).uniq("album").value();//.pluck("album")
+    console.log(uniqueAlbums);
+
+    // $('#selects').html(formTemplate)({songs: data});
+    $('#artistSelect').html(artistFormTemplate(uniqueArtists));
+    $('#albumSelect').html(albumFormTemplate(uniqueAlbums));
+    ////////////////////////
     $(document).on('change', '#artist', function(){
       filterAlbum();
     });
