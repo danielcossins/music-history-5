@@ -20,8 +20,8 @@ requirejs.config({
   }
 });
 
-requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight"],
-  function($, _, _firebase, Handlebars, bootstrap, matchHeight, post) {
+requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight", "load"],
+  function($, _, _firebase, Handlebars, bootstrap, matchHeight, load) {
     var myFirebaseRef = new Firebase("https://flickering-fire-4801.firebaseio.com/");
     myFirebaseRef.child("songs").on("value", function(snapshot) {
       console.log(snapshot.val());  // Alerts "San Francisco"
@@ -41,24 +41,24 @@ requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight"],
 
 
       //////////This is what executes from the old code////////
-      var $addSongsButton = $('#addSongs');
+      // var $addSongsButton = $('#addSongs');
       var $filterSongs = $('#filter');
       addSongs(allSongsArray);
 
+      load.upload();
 
-
-      $addSongsButton.on("click", function(){
-        console.log("We made it to the button click");
-        var song = {
-        "name": $('#title').val(),
-        "artist": $('#artist').val(),
-        "album": $('#album').val(),
-        "year": $('#year').val()
-        };
-        console.log(song);
-        // loadSongsToFirebase(song);
-        loadSongsToFirebase(song);
-      });
+      // $addSongsButton.on("click", function(){
+      //   console.log("We made it to the button click");
+      //   var song = {
+      //   "name": $('#title').val(),
+      //   "artist": $('#artist').val(),
+      //   "album": $('#album').val(),
+      //   "year": $('#year').val()
+      //   };
+      //   console.log(song);
+      //   // loadSongsToFirebase(song);
+      //   loadSongsToFirebase(song);
+      // });
 
       filterSongs();
     });
