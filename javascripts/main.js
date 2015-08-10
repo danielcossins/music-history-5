@@ -57,7 +57,7 @@ requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight"],
         };
         console.log(song);
         // loadSongsToFirebase(song);
-        loadSongsToFirebase(songs);
+        loadSongsToFirebase(song);
       });
 
       filterSongs();
