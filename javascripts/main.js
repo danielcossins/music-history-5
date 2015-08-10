@@ -43,7 +43,12 @@ requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight", "l
       //////////This is what executes from the old code////////
       // var $addSongsButton = $('#addSongs');
       var $filterSongs = $('#filter');
-      addSongs(allSongsArray);
+      addSongs(allSongsArray);//includes the select template and filteArlbum()
+
+      $filterSongs.on("click", function(){
+        // console.log("We made it to the button click");
+        filterSongs();
+      });
 
       load.upload();
 
@@ -59,8 +64,6 @@ requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight", "l
       //   // loadSongsToFirebase(song);
       //   loadSongsToFirebase(song);
       // });
-
-      filterSongs();
     });
 
     
@@ -107,11 +110,11 @@ function addSongs(data){
     //   formOnce=true;
     // }
 /////////////////////////////
-    $('#selects').html(formTemplate(data));//populates select tags
+    $('#selects').html(formTemplate({songs: data}));//populates select tags
     $(document).on('change', '#artist', function(){
       filterAlbum();
     });
-    // filterAlbum();
+    filterAlbum();
 
     $('.matchHeight').matchHeight();
   });
@@ -149,6 +152,8 @@ function filterSongs(){
   // var domArr = $('.cont');
   var $artistArr = $(".artist");
   var $albumArr = $(".album");
+  // var $artistArr = _.chain(allSongsArray).uniq("artist").pluck("artist").value();
+  // var $albumArr = _.chain(allSongsArray).uniq("album").pluck("album").value();
   for(var i=0; i<$artistArr.length; i++){
     $($artistArr[i]).parent().parent().hide();
 
