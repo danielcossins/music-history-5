@@ -5,60 +5,102 @@ requirejs.config({
   baseUrl: './javascripts',
   paths: {
     'jquery': '../bower_components/jquery/dist/jquery.min',
+    'lodash': '../bower_components/lodash/lodash.min',
+    'firebase': '../bower_components/firebase/firebase',
     'hbs': '../bower_components/require-handlebars-plugin/hbs',
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
     'matchHeight': '../bower_components/matchHeight/jquery.matchHeight-min'
   },
   shim: {
     'bootstrap': ['jquery'],
-    'matchHeight': ['jquery']
+    'matchHeight': ['jquery'],
+    'firebase': {
+      exports: 'Firebase'
+    }
   }
 });
 
-requirejs(["jquery", "hbs", "bootstrap", "matchHeight", "dom-access", "populate-songs", "get-more-songs"],
-  function($, Handlebars, bootstrap, matchHeight, output, generate, getMore) {
-    var $addSongsButton = $('#addSongs');
-    var $filterSongs = $('#filter');
-    
-    var num = 1;
-    console.log(output);
-    generate.setArray(addSongs);
+requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight"],
+  function($, _, _firebase, Handlebars, bootstrap, matchHeight, post) {
+    var myFirebaseRef = new Firebase("https://flickering-fire-4801.firebaseio.com/");
+    myFirebaseRef.child("songs").on("value", function(snapshot) {
+      console.log(snapshot.val());  // Alerts "San Francisco"
+      var songs = snapshot.val();
+      console.log(songs);
+      var allSongsArray=[];
+       // Convert Firebase's object of objects into an array of objects
+      for (var key in songs) {
+        allSongsArray[allSongsArray.length] = songs[key];
+      }
+      console.log(allSongsArray);
+      allSongsObject = {songs: allSongsArray};
+      // origininalSongsArray = allSongsArray.slice();
 
-    $addSongsButton.on("click", function(){
-      console.log("We made it to the button click");
-      var song = {
-      "name": $('#title').val(),
-      "artist": $('#artist').val(),
-      "album": $('#album').val(),
-      "year": $('#year').val()
-      };
-      console.log(song);
-      loadSongsToFirebase(song);
-    });
+      var uniqueArtists = _.chain(allSongsArray).uniq("artist").pluck("artist").value();
+      var uniqueAlbums = _.chain(allSongsArray).uniq("album").pluck("album").value();
 
-    $filterSongs.on("click", function(){
-      // console.log("We made it to the button click");
+
+      //////////This is what executes from the old code////////
+      var $addSongsButton = $('#addSongs');
+      var $filterSongs = $('#filter');
+      addSongs(allSongsArray);
+
+
+
+      $addSongsButton.on("click", function(){
+        console.log("We made it to the button click");
+        var song = {
+        "name": $('#title').val(),
+        "artist": $('#artist').val(),
+        "album": $('#album').val(),
+        "year": $('#year').val()
+        };
+        console.log(song);
+        // loadSongsToFirebase(song);
+        loadSongsToFirebase(songs);
+      });
+
       filterSongs();
     });
 
-    // $(document).on('click', '#artist', function(){
-    //   filterAlbum();
+    
+    
+
+
+
+
+
+
+    ////////////////////
+    // var $addSongsButton = $('#addSongs');
+    // var $filterSongs = $('#filter');
+    
+    // var num = 1;
+    // console.log(output);
+    // generate.setArray(addSongs);
+
+    // $addSongsButton.on("click", function(){
+    //   console.log("We made it to the button click");
+    //   var song = {
+    //   "name": $('#title').val(),
+    //   "artist": $('#artist').val(),
+    //   "album": $('#album').val(),
+    //   "year": $('#year').val()
+    //   };
+    //   console.log(song);
+    //   loadSongsToFirebase(song);
     // });
 
-    // modifySelect();
-
-
-  // $('#more').click(function(){
-  //   if(num===1){
-  //   getMore.setArray(addSongs);
-  //   num=2;
-  //   }
-  // });
+    // $filterSongs.on("click", function(){
+    //   // console.log("We made it to the button click");
+    //   filterSongs();
+    // });
+//////////////////////////////////////////////////
 });
 
 function addSongs(data){
   require(['hbs!../templates/songs', 'hbs!../templates/form'], function(songTemplate, formTemplate){
-    $('#more').before(songTemplate(data));//populates songs
+    $('#more').before(songTemplate({songs: data}));//populates songs
 ////This code will only run once//////////////////
     // if(formOnce===false){
     //   $('#left').html(formTemplate(data));
@@ -145,6 +187,8 @@ function filterAlbum(){
     }
   });
 }
+
+
 // function modifySelect(){
 //   var $artistSelect = $('select#artist');
 //   console.log($artistSelect);
