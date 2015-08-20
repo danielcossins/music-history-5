@@ -6,6 +6,7 @@ requirejs.config({
     'firebase': '../bower_components/firebase/firebase',
     'hbs': '../bower_components/require-handlebars-plugin/hbs',
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
+    'q': '../bower_components/q/q',
     'matchHeight': '../bower_components/matchHeight/jquery.matchHeight-min'
   },
   shim: {
@@ -17,10 +18,23 @@ requirejs.config({
   }
 });
 
-requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight", "load", "display"],
-  function($, _, _firebase, Handlebars, bootstrap, matchHeight, load, display) {
+requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight", "load", "display", "get-songs", "get-more-songs", "authentication"],
+  function($, _, _firebase, Handlebars, bootstrap, matchHeight, load, display, getSongs, getMoreSongs, auth) {
+
+var ref = new Firebase("https://flickering-fire-4801.firebaseio.com");
+ref.authWithOAuthPopup("github", function(error, authData) {
+  if (error) {
+    console.log("Login Failed!", error);
+  } else {
+    console.log("Authenticated successfully with payload:", authData);
+    auth.setUid(authData.uid);
+  }
+});
+/////////////////////////////////////////////////////
+
   var myFirebaseRef = new Firebase("https://flickering-fire-4801.firebaseio.com/");
   myFirebaseRef.child("songs").on("value", function(snapshot) {
+    
     console.log(snapshot.val());
     var songs = snapshot.val();
     console.log(songs);
@@ -34,6 +48,9 @@ requirejs(["jquery", "lodash", "firebase", "hbs", "bootstrap", "matchHeight", "l
     ////////////////////////////////////////
     display.show(allSongsArray);//displays the songs and other stuff
 
-    load.upload();//uploads the added songs to firebase
+    load().then(function(data){
+      console.log(data);
+    });
   });
+
 });
