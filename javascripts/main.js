@@ -28,29 +28,35 @@ ref.authWithOAuthPopup("github", function(error, authData) {
   } else {
     console.log("Authenticated successfully with payload:", authData);
     auth.setUid(authData.uid);
+//////////////////////////THIS HAPPENS WHEN IT IS SUCCESSFULLY AUTHORIZED
+    var myFirebaseRef = new Firebase("https://flickering-fire-4801.firebaseio.com/");
+    myFirebaseRef.child("songs").on("value", function(snapshot) {
+      
+      console.log(snapshot.val());
+      var songs = snapshot.val();
+      console.log(songs);
+      var allSongsArray=[];
+       // Convert Firebase's object of objects into an array of objects
+      for (var key in songs) {
+        allSongsArray[allSongsArray.length] = songs[key];
+      }
+      console.log(allSongsArray);
+      allSongsObject = {songs: allSongsArray};
+      ////////////////////////////////////////
+      display.show(allSongsArray);//displays the songs and other stuff
+
+      load().then(function(data){
+        console.log(data);
+      });
+    });
+
+
+///////////////
+
   }
 });
 /////////////////////////////////////////////////////
 
-  var myFirebaseRef = new Firebase("https://flickering-fire-4801.firebaseio.com/");
-  myFirebaseRef.child("songs").on("value", function(snapshot) {
-    
-    console.log(snapshot.val());
-    var songs = snapshot.val();
-    console.log(songs);
-    var allSongsArray=[];
-     // Convert Firebase's object of objects into an array of objects
-    for (var key in songs) {
-      allSongsArray[allSongsArray.length] = songs[key];
-    }
-    console.log(allSongsArray);
-    allSongsObject = {songs: allSongsArray};
-    ////////////////////////////////////////
-    display.show(allSongsArray);//displays the songs and other stuff
-
-    load().then(function(data){
-      console.log(data);
-    });
-  });
+  
 
 });
