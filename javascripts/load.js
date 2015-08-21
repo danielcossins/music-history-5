@@ -1,4 +1,4 @@
-define(["jquery", "q"], function($, Q){
+define(["jquery", "q", "authentication"], function($, Q, auth){
 
   return function(){
       var $addSongsButton = $('#addSongs');
@@ -10,7 +10,8 @@ define(["jquery", "q"], function($, Q){
         "name": $('#title').val(),
         "artist": $('#artist').val(),
         "album": $('#album').val(),
-        "year": $('#year').val()
+        "year": $('#year').val(),
+        "uid": auth.getUid()
         };
         console.log(song);
         // loadSongsToFirebase(song);
