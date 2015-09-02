@@ -1,12 +1,14 @@
-define(["jquery", "q", "authentication"], function($, Q, auth){
+import * as $ "jquery";
+import * as Q "q";
+import * as auth "authentication";
 
-  return function(){
+export default function(){
       var $addSongsButton = $('#addSongs');
 
       var deferred = Q.defer();
       $addSongsButton.on("click", function(){
         console.log("We made it to the button click");
-        var song = {
+        let song = {
         "name": $('#title').val(),
         "artist": $('#artist').val(),
         "album": $('#album').val(),
@@ -31,9 +33,7 @@ define(["jquery", "q", "authentication"], function($, Q, auth){
 
       });
       return deferred.promise;
-    };
-  
-});
+    }
 
 // function loadSongsToFirebase(data){
 //   console.log("made it into the function");
