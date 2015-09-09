@@ -4,7 +4,7 @@ This app is for storing and adding songs. It's the second version of music histo
 #Usage
 Follow these instructions:
 
-  1. In the command line, type ```https://github.com/danielcossins11/music-history-5.git```
+  1. In the command line, type ```git clone https://github.com/danielcossins11/music-history-5.git```
   2. cd into the lib directory
   3. run the command ```npm install```
   4. run the command ```bower install```
